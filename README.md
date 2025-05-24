@@ -17,6 +17,15 @@ This repository contains a lightweight, ready-to-deploy AI agent workflow using 
 
 ---
 
+# 🧠 O3 Mini Agent Starter
+
+[![Deploy to Azure](https://img.shields.io/badge/Deploy-Azure-blue?logo=azure)](https://portal.azure.com)
+[![GitHub Actions](https://github.com/o3aistack/o3-mini-agent-starter/actions/workflows/deploy.yml/badge.svg)](https://github.com/o3aistack/o3-mini-agent-starter/actions)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+This is a ready-to-deploy AI agent built for the O3 Mini Stack. It uses FastAPI, OpenAI’s GPT API, and Azure Container Apps for secure and scalable inference.
+
+
 ## 🚀 Quick Start
 
 ```bash
