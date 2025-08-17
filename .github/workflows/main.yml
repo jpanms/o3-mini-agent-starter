@@ -1,0 +1,37 @@
+ name: Deploy O3 Mini Agent
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    env:
+      AZURE_CONTAINER_REGISTRY: o3registry.azurecr.io
+      IMAGE_NAME: o3-mini-agent
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+
+    - name: Log in to Azure Container Registry
+      run: az acr login --name ${{ env.AZURE_CONTAINER_REGISTRY }}
+
+    - name: Build and push Docker image
+      run: |
+        docker build -t $AZURE_CONTAINER_REGISTRY/$IMAGE_NAME:latest .
+        docker push $AZURE_CONTAINER_REGISTRY/$IMAGE_NAME:latest
+
+    - name: Deploy to Azure Container App
+      run: |
+        az containerapp update \
+          --name o3-mini-agent \
+          --resource-group o3-rg \
+          --image $AZURE_CONTAINER_REGISTRY/$IMAGE_NAME:latest
