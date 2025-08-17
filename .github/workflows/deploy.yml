@@ -1,4 +1,4 @@
- name: Deploy O3 Mini Agent
+ name: Deploy O3 Mini Agent Test
 
 on:
   push:
